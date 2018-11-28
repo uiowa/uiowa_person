@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Installation functions for the University of Iowa Person module.
+ */
+
+use Drupal\user\RoleInterface;
+
+/**
+ * Implements hook_install().
+ */
+function uiowa_person_install() {
+  $config = Drupal::configFactory()->getEditable('system.image.gd');
+  $config->set('jpeg_quality', '100')->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function uiowa_person_uninstall() {
+/*
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+  $entities = $storage_handler->loadByProperties(['type' => 'person']);
+  $storage_handler->delete($entities);
+*/
+}

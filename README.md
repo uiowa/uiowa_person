@@ -1,2 +1,6 @@
 # University of Iowa Person Module
-Drupal Module to implement a basic person content type
+
+## Maintainers
+
+Current maintainers:
+ * Mark Bennett - https://drupal.org/user/2506978
