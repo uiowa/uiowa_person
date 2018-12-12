@@ -5,12 +5,45 @@
  * Installation functions for the University of Iowa Person module.
  */
 
+use Drupal\taxonomy\Entity\Term;
+
 /**
  * Implements hook_install().
  */
 function uiowa_person_install() {
   $config = Drupal::configFactory()->getEditable('system.image.gd');
   $config->set('jpeg_quality', '100')->save();
+
+  // Create default terms for person_departments taxonomy vocabulary.
+  $vocab = 'person_departments';
+  $items = [
+    'Department A',
+    'Department B',
+    'Department C',
+  ];
+  foreach ($items as $item) {
+    $term = Term::create([
+      'parent' => [],
+      'name' => $item,
+      'vid' => $vocab,
+    ])->save();
+  }
+
+  // Create default terms for person_types taxonomy vocabulary.
+  $vocab = 'person_types';
+  $items = [
+    'Faculty',
+    'Emeritus',
+    'Staff',
+    'Student',
+  ];
+  foreach ($items as $item) {
+    $term = Term::create([
+      'parent' => [],
+      'name' => $item,
+      'vid' => $vocab,
+    ])->save();
+  }
 }
 
 /**
@@ -19,5 +52,21 @@ function uiowa_person_install() {
 function uiowa_person_uninstall() {
   $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
   $entities = $storage_handler->loadByProperties(['type' => 'person']);
+  $storage_handler->delete($entities);
+
+  // Delete all terms from person_departments taxonomy vocabulary.
+  $tids = \Drupal::entityQuery('taxonomy_term')
+    ->condition('vid', 'person_departments')
+    ->execute();
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $entities = $storage_handler->loadMultiple($tids);
+  $storage_handler->delete($entities);
+
+  // Delete all terms from person_types taxonomy vocabulary.
+  $tids = \Drupal::entityQuery('taxonomy_term')
+    ->condition('vid', 'person_types')
+    ->execute();
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $entities = $storage_handler->loadMultiple($tids);
   $storage_handler->delete($entities);
 }

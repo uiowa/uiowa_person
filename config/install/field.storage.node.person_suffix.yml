@@ -3,16 +3,18 @@ status: true
 dependencies:
   module:
     - node
-    - telephone
   enforced:
     module:
       - uiowa_person
-id: node.person_phone
-field_name: person_phone
+id: node.person_suffix
+field_name: person_suffix
 entity_type: node
-type: telephone
-settings: {  }
-module: telephone
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

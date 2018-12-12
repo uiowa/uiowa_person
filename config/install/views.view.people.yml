@@ -4,12 +4,14 @@ dependencies:
   config:
     - field.storage.node.person_address
     - field.storage.node.person_bio
+    - field.storage.node.person_building
     - field.storage.node.person_city
     - field.storage.node.person_department
     - field.storage.node.person_email
     - field.storage.node.person_image
     - field.storage.node.person_job_title
     - field.storage.node.person_phone
+    - field.storage.node.person_room
     - field.storage.node.person_state
     - field.storage.node.person_type
     - field.storage.node.person_zip
@@ -106,10 +108,12 @@ display:
             person_job_title: title
             person_department: person_department
             person_type: person_type
-            person_address: person_address
-            person_city: person_address
-            person_state: person_address
-            person_zip: person_address
+            person_room: person_room
+            person_building: person_room
+            person_address: person_room
+            person_city: person_room
+            person_state: person_room
+            person_zip: person_room
             person_email: person_email
             person_phone: person_phone
             person_bio: person_bio
@@ -141,6 +145,20 @@ display:
               empty_column: false
               responsive: ''
             person_type:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            person_room:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            person_building:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -451,7 +469,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: '<br/>'
           field_api_classes: false
           plugin_id: field
         person_type:
@@ -505,8 +523,134 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_building:
+          id: person_building
+          table: node__person_building
+          field: person_building
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: ' {{ person_building }}<br/>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<br/>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_room:
+          id: person_room
+          table: node__person_room
+          field: person_room
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Address
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ person_room }}{{ person_building }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -524,7 +668,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Address
+          label: ''
           exclude: false
           alter:
             alter_text: true
@@ -557,7 +701,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -901,7 +1045,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Bio
+          label: Biography
           exclude: false
           alter:
             alter_text: false
@@ -1179,12 +1323,14 @@ display:
       tags:
         - 'config:field.storage.node.person_address'
         - 'config:field.storage.node.person_bio'
+        - 'config:field.storage.node.person_building'
         - 'config:field.storage.node.person_city'
         - 'config:field.storage.node.person_department'
         - 'config:field.storage.node.person_email'
         - 'config:field.storage.node.person_image'
         - 'config:field.storage.node.person_job_title'
         - 'config:field.storage.node.person_phone'
+        - 'config:field.storage.node.person_room'
         - 'config:field.storage.node.person_state'
         - 'config:field.storage.node.person_type'
         - 'config:field.storage.node.person_zip'
@@ -1526,8 +1672,134 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_building:
+          id: person_building
+          table: node__person_building
+          field: person_building
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: ' {{ person_building }}<br/>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<br/>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_room:
+          id: person_room
+          table: node__person_room
+          field: person_room
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ person_room }}{{ person_building }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2013,12 +2285,14 @@ display:
       tags:
         - 'config:field.storage.node.person_address'
         - 'config:field.storage.node.person_bio'
+        - 'config:field.storage.node.person_building'
         - 'config:field.storage.node.person_city'
         - 'config:field.storage.node.person_department'
         - 'config:field.storage.node.person_email'
         - 'config:field.storage.node.person_image'
         - 'config:field.storage.node.person_job_title'
         - 'config:field.storage.node.person_phone'
+        - 'config:field.storage.node.person_room'
         - 'config:field.storage.node.person_state'
         - 'config:field.storage.node.person_type'
         - 'config:field.storage.node.person_zip'
@@ -2363,8 +2637,134 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_building:
+          id: person_building
+          table: node__person_building
+          field: person_building
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: ' {{ person_building }}<br/>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: '<br/>'
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        person_room:
+          id: person_room
+          table: node__person_room
+          field: person_room
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ person_room }}{{ person_building }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -2850,12 +3250,14 @@ display:
       tags:
         - 'config:field.storage.node.person_address'
         - 'config:field.storage.node.person_bio'
+        - 'config:field.storage.node.person_building'
         - 'config:field.storage.node.person_city'
         - 'config:field.storage.node.person_department'
         - 'config:field.storage.node.person_email'
         - 'config:field.storage.node.person_image'
         - 'config:field.storage.node.person_job_title'
         - 'config:field.storage.node.person_phone'
+        - 'config:field.storage.node.person_room'
         - 'config:field.storage.node.person_state'
         - 'config:field.storage.node.person_type'
         - 'config:field.storage.node.person_zip'
@@ -2881,12 +3283,14 @@ display:
       tags:
         - 'config:field.storage.node.person_address'
         - 'config:field.storage.node.person_bio'
+        - 'config:field.storage.node.person_building'
         - 'config:field.storage.node.person_city'
         - 'config:field.storage.node.person_department'
         - 'config:field.storage.node.person_email'
         - 'config:field.storage.node.person_image'
         - 'config:field.storage.node.person_job_title'
         - 'config:field.storage.node.person_phone'
+        - 'config:field.storage.node.person_room'
         - 'config:field.storage.node.person_state'
         - 'config:field.storage.node.person_type'
         - 'config:field.storage.node.person_zip'

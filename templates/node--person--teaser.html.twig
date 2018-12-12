@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Teaser theme implementation for the Person content type.
+ */
+#}
+
+{% if label is not empty %}
+    <div class="field node-title">
+        <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ label }}</a>
+    </div>
+{% endif %}

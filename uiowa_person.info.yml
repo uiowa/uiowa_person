@@ -1,13 +1,16 @@
-name: University of Iowa Person
+name: UIowa Person
 description: Provides basic web profiles for people.
-package: UIowa
+package: University of Iowa
 
 type: module
 core: 8.x
 
 dependencies:
-  - drupal:views
   - drupal:media
+  - drupal:taxonomy
+  - drupal:telephone
+  - drupal:views
+#  - address:address
   - pathauto:pathauto
 
 php: 5.6
