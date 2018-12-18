@@ -37,43 +37,48 @@
 {% endif %}
 
 {#
-{% if (node.field_person_address2.value is not empty) %}
-  <h2 class="field-header">Contact Information</h2>
-    {{ content.field_person_address2[0] }}
-  <div class="field field-name-person-address2">
-    {{ node.field_person_address2.address_line1 }}
-  </div>
+{% if node.person_address.address_line1 is not empty %}
+    {% set address = address ~ node.person_address.address_line1 ~ '<br/>' %}
 {% endif %}
+{% if node.person_address.address_line2 is not empty %}
+    {% set address = address ~ node.person_address.address_line2 ~ '<br/>' %}
+{% endif %}
+{% if node.person_address.locality is not empty %}
+    {% set address = address ~ node.person_address.locality %}
+{% endif %}
+{% if node.person_address.administrative_area is not empty %}
+    {% set address = address ~ ', ' ~ node.person_address.administrative_area %}
+{% endif %}
+{% if node.person_address.postal_code is not empty %}
+    {% set address = address ~ ' ' ~ node.person_address.postal_code %}
+{% endif %}
+{% set address = address ~ '<br/>' %}
+{{ address|raw }}
 #}
 
 {# Display address information from multiple fields. #}
-{% if (node.person_address.value is not empty)
-        or(node.person_phone.value is not empty)or(node.person_email.value is not empty) %}
+{% if (node.person_room.value is not empty)or(node.person_building.value is not empty)
+        or(node.person_address.value is not empty)or(node.person_phone.value is not empty)
+        or(node.person_email.value is not empty) %}
   <h2 class="field-header">Contact Information</h2>
   {% set address = '' %}
   {% if node.person_room.value is not empty %}
     {% set address = address ~ node.person_room.value %}
   {% endif %}
   {% if node.person_building.value is not empty %}
-    {% set address = address ~ ' ' ~ node.person_building.value ~ '<br/>' %}
-  {% else %}
-    {% set address = address ~ '<br/>' %}
-  {% endif %}
-  {% if node.person_address.value is not empty %}
-    {% set address = address ~ node.person_address.value ~ '<br/>' %}
-  {% endif %}
-  {% if node.person_city.value is not empty %}
-    {% set address = address ~ node.person_city.value %}
-  {% endif %}
-  {% if node.person_state.value is not empty %}
-    {% set address = address ~ ', ' ~ node.person_state.value %}
-  {% endif %}
-  {% if node.person_zip.value is not empty %}
-    {% set address = address ~ ' ' ~ node.person_zip.value %}
+    {% set address = address ~ ' ' ~ node.person_building.value %}
   {% endif %}
   {% if address is not empty %}
-    <div class="field field-name-person-address">
+    <div class="field field-name-person-room-building">
       {{ address|raw }}
+    </div>
+  {% endif %}
+  {% if node.person_address.value is not empty %}
+    <div class="field field-name-person-address">
+      {% if (node.person_address.value is not empty) %}
+        {{ content.person_address[0] }}
+{#        {{ content.person_address[0]|without('country') }}#}
+      {% endif %}
     </div>
   {% endif %}
   {% if node.person_phone.value is not empty %}

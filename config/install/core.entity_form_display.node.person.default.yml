@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.person.person_affiliation
     - field.field.node.person.person_bio
     - field.field.node.person.person_building
-    - field.field.node.person.person_city
     - field.field.node.person.person_credentials
     - field.field.node.person.person_department
     - field.field.node.person.person_email
@@ -19,13 +18,12 @@ dependencies:
     - field.field.node.person.person_phone
     - field.field.node.person.person_resume_cv
     - field.field.node.person.person_room
-    - field.field.node.person.person_state
     - field.field.node.person.person_suffix
     - field.field.node.person.person_type
     - field.field.node.person.person_website
-    - field.field.node.person.person_zip
     - node.type.person
   module:
+    - address
     - file
     - link
     - path
@@ -38,26 +36,25 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 25
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 27
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   person_address:
     weight: 12
     settings:
-      size: 60
-      placeholder: ''
+      default_country: US
     third_party_settings: {  }
-    type: string_textfield
+    type: address_default
     region: content
   person_affiliation:
-    weight: 19
+    weight: 16
     settings:
       size: 60
       placeholder: ''
@@ -65,7 +62,7 @@ content:
     type: string_textfield
     region: content
   person_bio:
-    weight: 22
+    weight: 19
     settings:
       rows: 5
       placeholder: ''
@@ -81,14 +78,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  person_city:
-    weight: 13
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   person_credentials:
     weight: 6
     settings:
@@ -98,7 +87,7 @@ content:
     type: string_textfield
     region: content
   person_department:
-    weight: 18
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -129,7 +118,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   person_job_title:
-    weight: 16
+    weight: 13
     settings:
       size: 60
       placeholder: ''
@@ -153,7 +142,7 @@ content:
     type: string_textfield
     region: content
   person_office_hours:
-    weight: 21
+    weight: 18
     settings:
       size: 60
       placeholder: 'Day: 0:00am - 0:00pm'
@@ -168,7 +157,7 @@ content:
     type: telephone_default
     region: content
   person_resume_cv:
-    weight: 23
+    weight: 20
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
@@ -176,14 +165,6 @@ content:
     region: content
   person_room:
     weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  person_state:
-    weight: 14
     settings:
       size: 60
       placeholder: ''
@@ -199,39 +180,31 @@ content:
     type: string_textfield
     region: content
   person_type:
-    weight: 17
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   person_website:
-    weight: 20
+    weight: 17
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  person_zip:
-    weight: 15
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 28
+    weight: 25
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 26
+    weight: 23
     region: content
     third_party_settings: {  }
   title:
@@ -244,7 +217,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 24
+    weight: 21
     settings:
       match_operator: CONTAINS
       size: 60

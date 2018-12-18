@@ -11,7 +11,7 @@ field_name: person_website
 entity_type: node
 bundle: person
 label: 'Website(s)'
-description: 'Valid URL(s) to a website. Will be automatically formatted as a link.'
+description: 'The valid URL(s) to a website. Will be automatically formatted as a link.'
 required: false
 translatable: false
 default_value: {  }

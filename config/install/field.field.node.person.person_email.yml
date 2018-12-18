@@ -9,7 +9,7 @@ field_name: person_email
 entity_type: node
 bundle: person
 label: Email
-description: 'Valid email address for this person. Will be automatically formatted as a mail-to link.'
+description: 'The valid email address for this person. Will be automatically formatted as a mail-to link.'
 required: false
 translatable: false
 default_value: {  }

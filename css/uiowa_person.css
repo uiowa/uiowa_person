@@ -24,6 +24,8 @@
 .view-people table td.views-field-person-phone {
     white-space: nowrap;
 }
+.view-people table td.views-field-title h3 { margin: 0; }
+.view-people table td.views-field-person-address p.address { margin: 0; }
 
 /* Default styling for the person nodes. */
 .page-node-type-person { line-height: 1.5; }

@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.person.person_affiliation
     - field.field.node.person.person_bio
     - field.field.node.person.person_building
-    - field.field.node.person.person_city
     - field.field.node.person.person_credentials
     - field.field.node.person.person_department
     - field.field.node.person.person_email
@@ -19,13 +18,12 @@ dependencies:
     - field.field.node.person.person_phone
     - field.field.node.person.person_resume_cv
     - field.field.node.person.person_room
-    - field.field.node.person.person_state
     - field.field.node.person.person_suffix
     - field.field.node.person.person_type
     - field.field.node.person.person_website
-    - field.field.node.person.person_zip
     - node.type.person
   module:
+    - address
     - file
     - link
     - telephone
@@ -44,13 +42,12 @@ content:
   person_address:
     weight: 5
     label: visually_hidden
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
-    type: string
+    type: address_default
     region: content
   person_affiliation:
-    weight: 13
+    weight: 10
     label: above
     settings:
       link_to_entity: false
@@ -58,7 +55,7 @@ content:
     type: string
     region: content
   person_bio:
-    weight: 16
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -72,16 +69,8 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  person_city:
-    weight: 6
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   person_department:
-    weight: 12
+    weight: 9
     label: above
     settings:
       link: true
@@ -89,7 +78,7 @@ content:
     type: entity_reference_label
     region: content
   person_email:
-    weight: 10
+    weight: 7
     label: inline
     settings: {  }
     third_party_settings: {  }
@@ -113,7 +102,7 @@ content:
     type: string
     region: content
   person_office_hours:
-    weight: 15
+    weight: 12
     label: above
     settings:
       link_to_entity: false
@@ -121,7 +110,7 @@ content:
     type: string
     region: content
   person_phone:
-    weight: 9
+    weight: 6
     label: inline
     settings:
       title: ''
@@ -129,7 +118,7 @@ content:
     type: telephone_link
     region: content
   person_resume_cv:
-    weight: 17
+    weight: 14
     label: hidden
     settings:
       use_description_as_link_text: true
@@ -144,16 +133,8 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  person_state:
-    weight: 7
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   person_type:
-    weight: 11
+    weight: 8
     label: above
     settings:
       link: true
@@ -161,7 +142,7 @@ content:
     type: entity_reference_label
     region: content
   person_website:
-    weight: 14
+    weight: 11
     label: above
     settings:
       trim_length: 80
@@ -172,17 +153,9 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-  person_zip:
-    weight: 8
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
 hidden:
-  field_credentials: true
-  field_person_suffix: true
+  person_credentials: true
+  person_suffix: true
   person_first_name: true
   person_last_name: true
   person_middle_name: true

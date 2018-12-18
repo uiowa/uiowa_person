@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.person.person_affiliation
     - field.field.node.person.person_bio
     - field.field.node.person.person_building
-    - field.field.node.person.person_city
     - field.field.node.person.person_credentials
     - field.field.node.person.person_department
     - field.field.node.person.person_email
@@ -20,11 +19,9 @@ dependencies:
     - field.field.node.person.person_phone
     - field.field.node.person.person_resume_cv
     - field.field.node.person.person_room
-    - field.field.node.person.person_state
     - field.field.node.person.person_suffix
     - field.field.node.person.person_type
     - field.field.node.person.person_website
-    - field.field.node.person.person_zip
     - node.type.person
   module:
     - user
@@ -43,7 +40,6 @@ hidden:
   person_affiliation: true
   person_bio: true
   person_building: true
-  person_city: true
   person_credentials: true
   person_department: true
   person_email: true
@@ -56,8 +52,6 @@ hidden:
   person_phone: true
   person_resume_cv: true
   person_room: true
-  person_state: true
   person_suffix: true
   person_type: true
   person_website: true
-  person_zip: true
