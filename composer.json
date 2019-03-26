@@ -1,0 +1,6 @@
+{
+  "name": "uiowa/uiowa_person",
+  "description": "Provides basic web profiles for people.",
+  "type": "drupal-custom-module",
+  "require": {}
+}
